@@ -1,0 +1,38 @@
+.container{
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px 10px 15px 15px;
+}
+.container > div{
+    margin: 25px 0 0 0;
+}
+
+.ideaname {
+    margin-bottom: -22px !important;
+    margin-top: 0 !important;
+}
+.last_row {
+    display: flex;
+}
+.votes {
+    flex-grow: 1;
+}
+.votes >span {
+    margin-right: 5px;
+    color: rgb(28, 6, 66)
+}
+.votes>span>i:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+}
+.votes > .active > i {
+    color: green;
+    font-size: 19px;
+}
+.user {
+    color: rgb(187, 185, 185);
+    font-size: 12px;
+    position: relative;
+    bottom: -10px;
+}

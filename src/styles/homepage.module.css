@@ -1,3 +1,10 @@
 .idea_pane{
     display: flex;
 }
+.idea_pane > div {
+    margin: 0 50px;
+    flex-grow: 1;
+}
+.container{
+    padding: 5vh 5vw;
+}

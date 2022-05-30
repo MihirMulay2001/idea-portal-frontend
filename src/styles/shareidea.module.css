@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    padding: 10vh 20vw;
+}
+.component {
+    margin: 0 5vw;
+    font-family: 'Pacifico', cursive;
+    font-size: 25px;
+}
+.btn{
+    background-color: white;
+    font-family: 'Pacifico', cursive;
+    font-size: 21px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.5);
+}
+.btn:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

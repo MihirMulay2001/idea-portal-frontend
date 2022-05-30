@@ -1,0 +1,30 @@
+
+.container > div {
+    overflow-y: scroll;
+    height: 400px;
+    padding: 10px;
+}
+.container > h1 {
+    font-family: 'Pacifico', cursive;
+    color: rgb(28, 6, 66);
+}
+.container>div::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.container>div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Handle */
+.container>div::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.container>div::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

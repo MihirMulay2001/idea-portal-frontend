@@ -1,0 +1,9 @@
+.ideas_board{
+    margin-top: 10vh;
+    padding: 5vw;
+}
+.ideas_board > div{
+    height: 600px;
+    overflow-y: scroll;
+    padding: 15px;
+}

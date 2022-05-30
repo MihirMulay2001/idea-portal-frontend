@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import Allideas from '../sections/Allideas'
-import Mostrecent from '../sections/Mostrecent'
-import Topvoted from '../sections/Topvoted'
 import tempdata from '../data/temp.json'
 import Header from '../sections/Header'
 import ShareIdea from '../sections/ShareIdea'
 import styles from '../styles/homepage.module.css'
+import SortedIdeas from '../sections/SortedIdeas'
+import Footer from '../sections/Footer'
 
 export default function Homepage({value}) {
     const [ideas, setIdeas] = useState([])
@@ -27,14 +27,18 @@ export default function Homepage({value}) {
     },[contract])
 
   return (
-      <div>
-        <Header />
+    <>
+    <Header />
+      <div className={styles.container}>
+        
         <ShareIdea />
         <div className={styles.idea_pane}>
-          <Topvoted ideas={ideas}/>
-          <Mostrecent value={value} ideas={ideas}/>  
+          <SortedIdeas ideas={ideas} type="vote" name="Top Voted"/>
+          <SortedIdeas ideas={ideas} type="time" name="Most Recent"/>
         </div>
         <Allideas ideas={ideas}/>
       </div>
+        <Footer />
+      </>
   )
 }

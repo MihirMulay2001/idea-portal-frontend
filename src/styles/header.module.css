@@ -1,3 +1,13 @@
 .container{
     text-align: center;
+    background-color: rgb(28, 6, 66);
+    padding: 25px;
+    color: white
+}
+.container > h1 {
+    margin: 12px;
+    font-family: 'Pacifico', cursive;
+}
+.container > header {
+    font-size: 21px;
 }

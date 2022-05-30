@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import ShareIdea from '../components/ShareIdea';
+import styles from '../styles/shareidea.module.css'
 
 export default function IdeaShare() {
   const [ideaPane, setIdeaPane] = useState(false);
@@ -10,19 +11,23 @@ export default function IdeaShare() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {
-        ideaPane && <ShareIdea onClick={handleToggle}  />
+        ideaPane
+        ? <ShareIdea onClick={handleToggle}  />
+        : <>
+          <div className={styles.component}>
+            <div>Have an idea?</div>
+            <div>Share it with the world!!</div>
+          </div>
+          <div>
+            <button  className={styles.btn} onClick={handleToggle}>
+              Share your idea!!
+            </button>
+          </div>
+        </>
       }
-      <div>
-        <div>Have an idea?</div>
-        <div>Share it with the world!!</div>
-      </div>
-      <div>
-        <button onClick={handleToggle}>
-          Share your idea!!
-        </button>
-      </div>
+      
     </div>
   )
 }
