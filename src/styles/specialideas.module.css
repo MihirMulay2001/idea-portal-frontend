@@ -1,12 +1,13 @@
 
 .container > div {
     overflow-y: scroll;
-    height: 400px;
+    max-height: 400px;
     padding: 10px;
 }
 .container > h1 {
     font-family: 'Pacifico', cursive;
     color: rgb(28, 6, 66);
+    margin-bottom: 0;
 }
 .container>div::-webkit-scrollbar {
     width: 6px;

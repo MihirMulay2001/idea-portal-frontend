@@ -16,10 +16,11 @@ function App() {
 
   const checkWalletIsConnected = () => { 
     const {ethereum} = window;
-    if(!ethereum){
-      alert("Make sure you have metamask installed")
-    }else{
+    if(ethereum){
       console.log("We are good to go!");
+      
+    }else{
+        alert("Make sure you have metamask installed")
     }
   }
 
@@ -46,7 +47,6 @@ function App() {
    useEffect(() => {
     checkWalletIsConnected();
     if(window.ethereum && currentAccount){
-      console.log("hello");
       getContract()
     }
   }, [currentAccount])

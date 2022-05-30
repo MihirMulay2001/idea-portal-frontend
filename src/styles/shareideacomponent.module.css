@@ -23,7 +23,7 @@
 .closebtn{
     position: relative;
     top: 10px;
-    left: -95px;
+    left: -5vw;
     border: none;
     padding: 5px;
     width: 30px;
@@ -43,13 +43,17 @@
 .container>div>div>*{
     margin: 3px;
 }
+.container >div> div> div {
+    flex-wrap: wrap;
+        display: flex;
+}
 .container>div>div > input[type="text"] {
     border: 2px solid rgb(200, 195, 195);
     border-radius: 5px;
     padding: 8px;
 }
-.container>div>div> input[name="long_desc"]{
-    height: 100px;
+.container>div>div> textarea[name="long_desc"]{
+    min-height: 50px;
     padding: 0;
     text-align: start;
 }
@@ -67,7 +71,8 @@
 .submitbtn{
     width: auto !important;
     font-size: 19px;
-    background-color: white;
+    background-color: rgba(28, 6, 66, 0.859) !important;
+    color: white;
     font-family: 'Pacifico', cursive;
     font-size: 19px;
     border: none;

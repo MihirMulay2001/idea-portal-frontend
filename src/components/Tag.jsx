@@ -1,9 +1,9 @@
 import React from 'react'
+import styles from '../styles/tag.module.css'
 
-export default function Tag({value}) {
+
+export default function Tag({value, size}) {
   return (
-    <span style={{backgroundColor: "#e4e4e4", borderRadius: "10px",
-    padding: "10px 5px"
-    }}>{value}</span>
+    <span className={styles.container}>{value}</span>
   )
 }
