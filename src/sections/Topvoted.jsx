@@ -6,17 +6,18 @@ export default function Topvoted({ideas}) {
 
   return (
       <div>
-    <div>Topvoted</div>
-    {
-        topvoted.map( (idea,key) => <IdeaPane key={key} idea={idea} />)
-    }
+      <h1>Top Voted</h1>
+      <div>
+      {
+          topvoted.length > 0 && topvoted.map( (idea,key) => <IdeaPane key={key} idea={idea} />)
+      }
+      </div>
     </div>
   )
 }
 
 function sortIdeas(ideas){
     ideas.sort((a,b) => b.votes - a.votes);
-    console.log(ideas);
     let arr = [];
     for(let i=0;i<5;i++){
         arr.push(ideas[i])

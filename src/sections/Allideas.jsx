@@ -7,9 +7,12 @@ export default function Allideas({ideas}) {
   }
     return (
     <div className="all_ideas_board">
+      <h1>All Ideas</h1>
+      <div>
         {
-            ideas.map((idea, key) => <IdeaPane idea={idea} key={key} type="compressed"/>)
+            ideas.map((idea, key) => <IdeaPane idea={idea} key={key} type="enlarged"/>)
         }
+      </div>
     </div>
   )
 }

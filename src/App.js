@@ -1,12 +1,12 @@
 import './App.css';
-import React, {useState, useEffect, createContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import Homepage from './pages/Homepage';
 import IdeaPortal from './contracts/IdeaPortal.json'
 import { ethers } from 'ethers';
+import ConnectWallet from './sections/ConnectWallet';
 // import getWeb3 from './getWeb3';
 
 const contractAddress = "0xD8e96B835564FEd1a65D8115D7E7CB96df122A6b";
-const ContractContext = createContext()
 // const abi = contract.abi;
 
 function App() {
@@ -23,29 +23,7 @@ function App() {
     }
   }
 
-  const connectWalletHandler = async () => {
-      const {ethereum} = window;
-      if(!ethereum){
-        alert("Make sure you have metamask installed")
-      }else{
-        try{
-          const accounts = await ethereum.request({method: 'eth_requestAccounts'})
-          setCurrentAccount(accounts[0])
-        }catch(error){
-          console.log(error);
-        }
-      }
-   }
 
-
-
-  const connectWalletButton = () => {
-    return (
-      <button onClick={connectWalletHandler} className='cta-button connect-wallet-button'>
-        Connect Wallet
-      </button>
-    )
-  }
 
   const getContract = async () => {
 
@@ -54,7 +32,7 @@ function App() {
       if(ethereum){
         const provider = new ethers.providers.Web3Provider(ethereum)
         const signer = provider.getSigner();
-        const _IdeaPortalContract = new ethers.Contract(contractAddress,IdeaPortal, signer)
+        const _IdeaPortalContract = new ethers.Contract(contractAddress,IdeaPortal.abi, signer)
       setContract(_IdeaPortalContract)  
       }else{
         console.log("Object doesn't exist");
@@ -68,9 +46,10 @@ function App() {
    useEffect(() => {
     checkWalletIsConnected();
     if(window.ethereum && currentAccount){
+      console.log("hello");
       getContract()
     }
-  }, [])
+  }, [currentAccount])
 
 
   return (
@@ -78,7 +57,7 @@ function App() {
       <div>
         {currentAccount != null
         ? <Homepage value={{contract, currentAccount}} />
-        :connectWalletButton()
+        : <ConnectWallet setCurrentAccount={setCurrentAccount} />
         }
       </div>
     </div>
