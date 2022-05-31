@@ -6,7 +6,7 @@ import { ethers } from 'ethers';
 import ConnectWallet from './sections/ConnectWallet';
 // import getWeb3 from './getWeb3';
 
-const contractAddress = "0xD8e96B835564FEd1a65D8115D7E7CB96df122A6b";
+const contractAddress = "0x053F5A2E2b66a213d5f22c3Cf578E31d501AE68b";
 // const abi = contract.abi;
 
 function App() {
@@ -50,7 +50,10 @@ function App() {
       getContract()
     }
   }, [currentAccount])
-
+  window.ethereum.on('accountsChanged', function (accounts) {
+        setCurrentAccount(accounts[0]);
+        console.log(accounts[0]);
+    })
 
   return (
     <div className="App">

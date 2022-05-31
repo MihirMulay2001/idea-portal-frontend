@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import IdeaPane from '../components/IdeaPane'
 import styles from '../styles/allideas.module.css'
 
-export default function Allideas({ideas}) {
+export default function Allideas({ideas, contract}) {
   if(ideas.length === 0){
       return <div>Fetching ideas</div>
   }
@@ -11,7 +11,7 @@ export default function Allideas({ideas}) {
       <h1>All Ideas</h1>
       <div>
         {
-            ideas.map((idea, key) => <IdeaPane idea={idea} key={key} type="enlarged"/>)
+            ideas.map((idea, key) => <IdeaPane contract={contract} idea={idea} key={key} type="enlarged"/>)
         }
       </div>
     </div>

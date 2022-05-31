@@ -21,7 +21,6 @@ export default function SortedIdeas({ideas, type, name, contract}) {
 }
 
 function sortIdeasVotes(ideas){
-  console.log(ideas);
     const aww = ideas.slice().sort((a,b) => b.votes - a.votes);
     let arr = [];
     for(let i=0;i<5;i++){
@@ -31,7 +30,6 @@ function sortIdeasVotes(ideas){
 }
 
 function sortIdeasTime(ideas){
-  console.log(ideas);
     let arr = []
     let numofideas = ideas.length
     let count = 5;
@@ -39,7 +37,7 @@ function sortIdeasTime(ideas){
       return ideas
     }
     while(count-- && numofideas--){
-        arr.push(ideas[numofideas-1])
+        arr.push(ideas[numofideas])
     }
     return arr;
 }

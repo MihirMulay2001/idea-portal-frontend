@@ -10,24 +10,44 @@ import MintNFT from '../components/MintNFT'
 
 export default function Homepage({value}) {
     const [ideas, setIdeas] = useState([])
-    const {contract} = value;
-    const [checkNFT, setCheckNFT] = useState(false)
-
+    const {contract, currentAccount} = value;
+    const [checkNFT, setCheckNFT] = useState(true)
     useEffect(() => {
+      let filter;
       try{
         if(contract !== null){
+          filter = contract.filters.VoteChange(currentAccount, null);
           const foo = async() => {
-          const aww = await contract.getIdeas();
-          const arr = aww.map(_i => Object.assign({id: _i[0], votes: _i[1], idea: _i[2], user: _i[3]}))
-          console.log(arr);
-          setIdeas(arr.length !== 0 ? arr : tempdata);
-        }
+            const aww = await contract.getIdeas();
+            const arr = aww.map(_i => ({id: _i[0], votes: _i[1], idea: _i[2], user: _i[3]}))
+            setIdeas(arr);
+            contract.on("IdeaSet", onNewIdea); 
+            contract.on(filter, onUpvote)
+            const hnft = await contract.walletHoldsToken('0x495b25d6bf416f3c7f7537b342ae775a4612f173')
+            console.log(hnft);
+          }
         foo();
         }
+        const onUpvote = async () => {
+          setIdeas(await contract.getIdeas());
+        }
+        const onNewIdea = async (_id, _votes, _idea, _from) => {
+            console.log("once");
+            const aww = await contract.getIdeas();
+            const arr = aww.map(_i => ({id: _i[0], votes: _i[1], idea: _i[2], user: _i[3]}))
+            setIdeas(arr);
+          }
+          return () => {
+          if (contract) {
+            contract.off("IdeaSet", onNewIdea);
+            contract.off(filter, onUpvote)
+          }
+        };
       }catch(e){
         console.log(e);
       }
-    },[contract])
+      
+    },[contract, currentAccount])
 
   return (
     <>

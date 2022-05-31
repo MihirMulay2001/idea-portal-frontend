@@ -5,31 +5,43 @@ import Tag from './Tag'
 
 export default function IdeaPane({idea, contract, type}) {
   const [hasUpvoted, setHasUpvoted] = React.useState(false)
-  // React.useEffect(()=>{
-  //   const foo = async () => {
-  //     if(contract.checkIfUpvoted()){
-  //       setHasUpvoted(true)
-  //     }
-  //   }
-  //   foo();
-  // },[])
+    React.useEffect(()=>{
+
+      if(contract !== null && idea){
+        const foo = async () => {
+          if(await contract.checkIfUserUpvoted(idea.id)){
+            setHasUpvoted(true)
+          }
+        }
+        foo();
+    }
+
+    },[contract, idea])
+
+
     const upvoteIdea = async(e) => {
       e.preventDefault()
       try{
-        const trans = await contract.upVoteIdea(idea.id)
+        const trans = await contract.toggleVote(idea.id)
         await trans.wait()
         console.log("success");
       }catch(e){
         console.log(e);
       }
     }
+
+
     if(!idea){
         return <div></div>
     }
+
+
     const arr = idea.idea.split("$%")
     const techS = arr[3].split(',');
     const externalL = arr[4].split(',')
-    console.log(techS, externalL);
+
+
+
   return (
     <div className={styles.container}>
       <div className={styles.ideaname}>
@@ -45,14 +57,19 @@ export default function IdeaPane({idea, contract, type}) {
           </span>
         {idea.votes}
         </div>
-        <div>
-          {
-            techS.map((_t, key) => <Tag value={_t} key={key} />)
-          }
-        </div>
-        <div className={styles.user}>
-        @{idea.user}
-        </div>
+        { type === "enlarged"
+        ? <>
+            <div>
+              {
+                techS.map((_t, key) => <Tag value={_t} key={key} />)
+              }
+            </div>
+            <div className={styles.user}>
+            @{idea.user}
+            </div>
+          </>
+        :''
+        }
       </div>
     </div>
   )
