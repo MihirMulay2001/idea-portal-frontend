@@ -2,7 +2,7 @@ import React from 'react'
 import IdeaPane from '../components/IdeaPane';
 import styles from '../styles/specialideas.module.css'
 
-export default function SortedIdeas({ideas, type, name, contract}) {
+export default function SortedIdeas({ideas, type, name, contract, hadNFT}) {
     const sortedIdeas =  type === "vote" ? sortIdeasVotes(ideas) : sortIdeasTime(ideas) ;;
 
   return (
@@ -12,7 +12,7 @@ export default function SortedIdeas({ideas, type, name, contract}) {
         {
             sortedIdeas.length > 0 && 
             sortedIdeas.map( (idea,key) => 
-            <IdeaPane key={key} idea={idea} type="compressed" contract={contract}/>
+            <IdeaPane key={key} idea={idea} type="compressed" contract={contract} hadNFT={hadNFT}/>
             )
         }
       </div>

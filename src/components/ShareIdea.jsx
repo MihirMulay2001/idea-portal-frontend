@@ -5,6 +5,7 @@ import Tag from './Tag'
 export default function ShareIdea({onClick, contract}) {
     const [techS, setTechS] = useState('')
     const [externalL, setExternalL] = useState('')
+    const [btnCont, setBtnCont] = useState('Share with the world')
     const [inputData, setInputData] = useState({
         idea_title: "",
         short_desc: "",
@@ -53,6 +54,7 @@ export default function ShareIdea({onClick, contract}) {
             const arr = [inputData.idea_title, inputData.short_desc, inputData.long_desc,ts,el]
             const aww = arr.join("$%")
             const w = await contract.setIdea(aww)
+            setBtnCont("Sharing idea...")
             await w.wait();
             console.log("success");
             onClick()
@@ -98,7 +100,7 @@ export default function ShareIdea({onClick, contract}) {
             </div>
             <div className={styles.submitbtndiv}>
                 <button onClick={onSubmit} 
-                className={styles.submitbtn}>Share with the world</button>
+                className={styles.submitbtn}>{btnCont}</button>
             </div>
         </div>
     </div>

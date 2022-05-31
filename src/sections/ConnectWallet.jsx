@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styles from '../styles/connectwallet.module.css'
 export default function ConnectWallet({setCurrentAccount}) {
 
     const connectWalletHandler = async () => {
@@ -16,7 +16,8 @@ export default function ConnectWallet({setCurrentAccount}) {
       }
    }
   return (
-    <div>
+    <div className={styles.container}>
+      <h3>To be able to access portal, connect your wallet</h3>
         <button onClick={connectWalletHandler} className='cta-button connect-wallet-button'>
             Connect Wallet
         </button>

@@ -14,7 +14,7 @@ export default function MintNFT() {
         </div>
         <div>
             <button>
-                Start a project
+                <a href="https://buildspace.so/">Start a project</a>
             </button>
         </div>
     </div>

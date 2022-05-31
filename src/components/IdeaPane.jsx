@@ -3,7 +3,7 @@ import styles from '../styles/ideapane.module.css'
 import Tag from './Tag'
 
 
-export default function IdeaPane({idea, contract, type}) {
+export default function IdeaPane({idea, contract, type, hadNFT}) {
   const [hasUpvoted, setHasUpvoted] = React.useState(false)
     React.useEffect(()=>{
 
@@ -21,12 +21,19 @@ export default function IdeaPane({idea, contract, type}) {
 
     const upvoteIdea = async(e) => {
       e.preventDefault()
-      try{
-        const trans = await contract.toggleVote(idea.id)
-        await trans.wait()
-        console.log("success");
-      }catch(e){
-        console.log(e);
+      if(hadNFT){
+        try{
+          const trans = await contract.toggleVote(idea.id)
+          await trans.wait()
+          console.log("success");
+          if(await contract.checkIfUserUpvoted(idea.id)){
+            setHasUpvoted(true)
+          }
+        }catch(e){
+          console.log(e);
+        }
+      }else{
+        alert("Mint a buildspace NFT to vote")
       }
     }
 

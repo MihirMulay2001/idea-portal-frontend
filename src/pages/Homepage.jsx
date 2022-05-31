@@ -10,8 +10,7 @@ import MintNFT from '../components/MintNFT'
 
 export default function Homepage({value}) {
     const [ideas, setIdeas] = useState([])
-    const {contract, currentAccount} = value;
-    const [checkNFT, setCheckNFT] = useState(true)
+    const {contract, currentAccount,checkNFT} = value;
     useEffect(() => {
       let filter;
       try{
@@ -23,13 +22,13 @@ export default function Homepage({value}) {
             setIdeas(arr);
             contract.on("IdeaSet", onNewIdea); 
             contract.on(filter, onUpvote)
-            const hnft = await contract.walletHoldsToken('0x495b25d6bf416f3c7f7537b342ae775a4612f173')
-            console.log(hnft);
           }
         foo();
         }
         const onUpvote = async () => {
-          setIdeas(await contract.getIdeas());
+          console.log("upvoted");
+          const w = await contract.getIdeas()
+          setIdeas(prev => w);
         }
         const onNewIdea = async (_id, _votes, _idea, _from) => {
             console.log("once");
@@ -57,10 +56,10 @@ export default function Homepage({value}) {
         
         { checkNFT && <ShareIdea contract={contract} />}
         <div className={styles.idea_pane}>
-          <SortedIdeas contract={contract} ideas={ideas} type="vote" name="Top Voted"/>
-          <SortedIdeas contract={contract} ideas={ideas} type="time" name="Most Recent"/>
+          <SortedIdeas contract={contract} ideas={ideas} type="vote" name="Top Voted" hadNFT={checkNFT}/>
+          <SortedIdeas contract={contract} ideas={ideas} type="time" name="Most Recent" hadNFT={checkNFT}/>
         </div>
-        <Allideas ideas={ideas} contract={contract}/>
+        <Allideas ideas={ideas} contract={contract} hadNFT={checkNFT}/>
       </div>
         <Footer />
       </>
